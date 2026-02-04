@@ -1,0 +1,213 @@
+/* コラムページヘッダー */
+.col-page-header {
+    background: #fff8f0; /* 薄いオレンジ */
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+.col-page-header h2 {
+    color: #e67e22;
+    margin: 0 0 10px;
+    font-size: 1.8rem;
+}
+.col-page-header p {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* レイアウト (2カラム) */
+.col-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+.col-main { flex: 1; }
+.col-sidebar { width: 300px; flex-shrink: 0; }
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .col-container {
+        flex-direction: column;
+    }
+    .col-sidebar {
+        width: 100%;
+        order: -1; /* サイドバー（CTA）を先に持ってくるか、記事下にするか選べます。今回は下に */
+        order: 1; 
+    }
+}
+
+/* カテゴリタブ */
+.cat-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    overflow-x: auto; /* スマホで横スクロール */
+    padding-bottom: 5px;
+}
+.cat-tab {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.cat-tab.active {
+    background: #e67e22;
+    color: white;
+    border-color: #e67e22;
+}
+
+/* 記事カード */
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.article-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+.article-link { text-decoration: none; color: inherit; display: block; height: 100%; }
+
+/* サムネイルエリア */
+.thumb-area {
+    height: 180px;
+    background: #f0f0f0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.thumb-placeholder { font-size: 3rem; color: #ccc; }
+.cat-label {
+    position: absolute;
+    top: 10px; left: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+.cat-label.construction { background: #3498db; }
+.cat-label.knowledge { background: #27ae60; }
+.cat-label.trouble { background: #e74c3c; }
+
+/* 記事本文 */
+.article-body { padding: 15px; }
+.article-body time { font-size: 0.75rem; color: #999; display: block; margin-bottom: 5px; }
+.article-body h3 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 2行で省略 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.article-snippet {
+    font-size: 0.85rem;
+    color: #777;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* サイドバーウィジェット */
+.sidebar-widget {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+.widget-title {
+    font-weight: bold;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+/* CTAウィジェット (強調) */
+.cta-widget {
+    background: #fff8f0;
+    border: 2px solid #e67e22;
+    text-align: center;
+}
+.btn-side-cta {
+    display: block;
+    background: linear-gradient(to right, #e67e22, #d35400);
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 50px;
+    font-weight: bold;
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+    transition: 0.2s;
+}
+.btn-side-cta:hover { transform: translateY(-2px); }
+.micro-copy { font-size: 0.7rem; color: #888; margin-top: 8px; }
+
+/* ランキングリスト */
+.ranking-list { list-style: none; padding: 0; margin: 0; }
+.ranking-list li { margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 12px; }
+.ranking-list a { text-decoration: none; color: #555; font-size: 0.9rem; display: flex; align-items: flex-start; }
+.rank {
+    background: #ccc; color: white;
+    width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+.ranking-list li:nth-child(1) .rank { background: #d4af37; } /* 金 */
+.ranking-list li:nth-child(2) .rank { background: #c0c0c0; } /* 銀 */
+.ranking-list li:nth-child(3) .rank { background: #cd7f32; } /* 銅 */
+
+/* スマホ用固定フッターCTA */
+.sticky-footer-cta {
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.9);
+    padding: 10px 20px;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    display: none; /* PCでは非表示 */
+    z-index: 90;
+    box-sizing: border-box;
+}
+.sticky-footer-cta a {
+    display: block;
+    background: #e67e22;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 0 #d35400;
+}
+@media (max-width: 768px) {
+    .sticky-footer-cta { display: block; }
+    body { padding-bottom: 70px; } /* フッターとかぶらないように余白 */
+}

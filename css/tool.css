@@ -1,0 +1,429 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   診断・見積もりツール用スタイル (完全版)
+   ========================================================================== */
+
+/* ※ style.css で定義された変数(var(--primary)など)を使用しています。
+   必ず style.css の後に読み込んでください。
+*/
+
+/* --- モーダル全体 --- */
+.tool-overlay {
+    display: none; /* 初期状態は非表示 */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px); /* すりガラス効果 */
+    z-index: 200;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tool-container {
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* --- ツールヘッダー --- */
+.tool-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+    padding-top: 10px;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 6px;
+    background: #eee;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#progress-fill {
+    width: 0;
+    height: 100%;
+    background: var(--primary);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+}
+
+.btn-close {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-sub);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+.btn-close:hover { color: var(--text-main); }
+
+/* --- 質問ステップ共通 --- */
+.step {
+    flex-grow: 1;
+    display: none; /* JSで制御 */
+    flex-direction: column;
+    animation: fadeInUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.step.active { display: flex; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.q-title {
+    font-family: var(--font-head);
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--text-main);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.q-desc {
+    text-align: center;
+    color: var(--text-sub);
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+/* --- 選択肢リスト (ラジオボタン) --- */
+.choice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.choice-card {
+    background: white;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    position: relative;
+}
+
+.choice-card:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(230, 90, 37, 0.1);
+}
+
+/* ラジオボタン自体は隠してカード全体をクリック可能に見せる */
+.choice-card input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* 選択された時のスタイル */
+.choice-card:has(input:checked) {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.choice-text {
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 1.05rem;
+}
+
+/* --- メーカー選択アイコン --- */
+.icon-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.icon-item {
+    background: white;
+    border: 1px solid #eee;
+    padding: 25px 10px;
+    text-align: center;
+    border-radius: 12px;
+    font-weight: bold;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.icon-item:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+/* --- カメラ・写真アップロードエリア --- */
+.camera-section {
+    margin-bottom: 20px;
+}
+
+.upload-area {
+    background: white;
+    border: 2px dashed #ccc;
+    border-radius: 16px;
+    padding: 50px 20px;
+    text-align: center;
+    position: relative;
+    transition: 0.2s;
+    color: var(--text-sub);
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.cam-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+    opacity: 0.6;
+}
+
+/* --- カメラ機能: ビデオ表示エリア --- */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 133%; /* アスペクト比 3:4 (スマホ縦向き想定) */
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+#camera-video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; /* 枠いっぱいに表示 */
+}
+
+/* --- カメラ機能: 鍵型ガイドフィルター (SVG版・中央配置) --- */
+.camera-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; /* クリックを下のビデオに通す */
+    background: rgba(0, 0, 0, 0.5); /* 背景を暗くしてガイドを強調 */
+}
+
+.key-filter-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* SVGコンテナのサイズ調整（画面いっぱいに大きく & 完全中央配置） */
+.key-svg-guide {
+    position: absolute; /* 絶対配置 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 自身のサイズの半分ずらして完全中央へ */
+    
+    width: 85%;       /* 横幅いっぱいに */
+    height: 75%;      /* 高さも十分確保 */
+    max-width: 350px; /* PCなどで大きくなりすぎないように */
+    filter: drop-shadow(0 0 8px rgba(0,0,0,0.8)); /* 枠自体に影を落として見やすく */
+    z-index: 10;
+}
+
+/* 鍵のパス（線のスタイル） */
+.key-svg-guide path {
+    fill: rgba(255, 255, 255, 0.1);  /* 内側をほんのり明るく透過 */
+    stroke: rgba(255, 255, 0, 0.9);  /* 黄色の線 */
+    stroke-width: 6;                 /* 線の太さ */
+    stroke-dasharray: 15, 10;        /* 点線 */
+    stroke-linecap: round;           /* 線の端を丸く */
+    vector-effect: non-scaling-stroke; /* 拡大縮小しても線の太さを保つ */
+}
+
+
+
+/* --- カメラ操作ボタン --- */
+.camera-controls {
+    display: flex; gap: 10px; margin-top: 10px;
+}
+
+.btn-shutter {
+    flex: 2;
+    background: #e74c3c;
+    color: white;
+    border: 4px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    padding: 15px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+.btn-shutter:active { transform: scale(0.95); }
+
+.btn-cancel-cam {
+    flex: 1;
+    background: #555;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* --- 入力フォーム (番号など) --- */
+.form-label {
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+.form-tag {
+    background: #ff7675;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.input-big {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 1.4rem;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    background: transparent;
+    border-radius: 0;
+    font-family: monospace;
+    letter-spacing: 0.1em;
+    color: var(--text-main);
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+.input-big:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* --- ナビゲーションボタン群 --- */
+.btn-group {
+    margin-top: auto;
+    padding-top: 30px;
+    display: flex;
+    gap: 12px;
+}
+
+.btn-next {
+    flex: 2;
+    background: var(--text-main); /* 進むボタンは黒で引き締め */
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.btn-next:hover {
+    background: #222;
+    transform: translateY(-2px);
+}
+
+.btn-back {
+    flex: 1;
+    background: white;
+    border: 1px solid #ddd;
+    color: var(--text-sub);
+    padding: 16px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --- 最終結果カード (Result) --- */
+.plan-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    padding: 30px 20px;
+    position: relative;
+    box-shadow: var(--shadow-card);
+}
+
+.plan-card.premium {
+    border: 2px solid var(--primary);
+    background: #fffcf8;
+}
+
+.price {
+    color: var(--primary);
+    font-family: var(--font-body);
+    font-weight: 800;
+}
+
+.p-head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.p-desc {
+    color: var(--text-main);
+    font-size: 0.95rem;
+    line-height: 2;
+}
+.p-desc strong {
+    color: var(--text-sub);
+    font-weight: normal;
+    font-size: 0.85rem;
+    margin-right: 10px;
+}
+
+.btn-select-main {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    box-shadow: var(--shadow-btn);
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-select-main:hover {
+    transform: translateY(-2px);
+    background: #d35400;
+}

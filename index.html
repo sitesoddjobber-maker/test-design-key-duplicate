@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-KAGI STORE | スマホで完結・合い鍵作成</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tool.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="logo"><a href="index.html">🔑 AI-KAGI STORE</a></h1>
+
+      <nav class="pc-nav sp-hidden">
+        <a href="#features">選ばれる理由</a>
+        <a href="#flow">ご利用の流れ</a>
+        <a href="columns.html">コラム</a>
+        <a href="#faq">よくある質問</a>
+        <a href="contact.html" class="nav-contact">お問い合わせ</a>
+      </nav>
+
+      <button class="hamburger-btn" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+
+    <nav id="mobile-menu" class="mobile-menu">
+      <div class="mobile-menu-inner">
+        <p class="menu-title">MENU</p>
+        <a href="#features" onclick="toggleMenu()">選ばれる理由</a>
+        <a href="#flow" onclick="toggleMenu()">ご利用の流れ</a>
+        <a href="columns.html" onclick="toggleMenu()">お役立ちコラム</a>
+        <a href="#faq" onclick="toggleMenu()">よくある質問</a>
+        <a href="contact.html" onclick="toggleMenu()">お問い合わせ</a>
+
+        <div class="mobile-cta">
+          <button class="btn-start" onclick="toggleMenu(); openTool();">
+            <span class="icon">📷</span> 今すぐ見積もり
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="lp-view">
+
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-container">
+        <div class="hero-badge">✨ 累計作成 10,000本突破</div>
+        <h2 class="hero-copy">
+          そのカギ、スマホで<br>
+          <span class="highlight">撮るだけで届きます。</span>
+        </h2>
+        <p class="hero-sub">
+          お店に行かずに、メーカー純正キーを作成。<br>
+          あなたの家の「安心」を、ポストへお届けします。
+        </p>
+
+        <div class="action-box">
+          <div class="action-balloon">＼ 30秒で完了！ ／</div>
+          <button class="btn-start" onclick="openTool()">
+            <span class="icon">📷</span>
+            今すぐ写真を撮って見積もり
+          </button>
+          <p class="note">会員登録不要 ・ 最短3日で発送</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="news-ticker">
+      <div class="news-inner">
+        <span class="news-date">2026.02.02</span>
+        <span class="news-tag">配送</span>
+        <span class="news-text">現在、MIWA製品の納期は通常通り（3-4日）です。GW前の注文はお早めに。</span>
+      </div>
+    </div>
+
+    <section class="section-wrapper sympathy-section">
+      <h3 class="section-title">鍵のことで、<br>こんなお悩みありませんか？</h3>
+      <div class="worry-grid">
+        <div class="worry-card">
+          <div class="worry-icon">😰</div>
+          <p class="worry-text">鍵が回りにくく<br>折れそうで怖い...</p>
+        </div>
+        <div class="worry-card">
+          <div class="worry-icon">👧</div>
+          <p class="worry-text">子供に持たせる<br>予備を作りたい</p>
+        </div>
+        <div class="worry-card">
+          <div class="worry-icon">🏃‍♂️</div>
+          <p class="worry-text">忙しくて鍵屋に<br>行く時間がない</p>
+        </div>
+      </div>
+      <div class="solution-arrow">
+        <p>そのお悩み、<br><strong>スマホひとつで解決</strong>できます。</p>
+      </div>
+    </section>
+
+    <section id="features" class="section-wrapper features-section">
+      <h3 class="section-title">AI-KAGI STOREが<br>選ばれる3つの理由</h3>
+
+      <div class="feature-row">
+        <div class="feature-img"
+          style="background-image: url('https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=800&q=80');">
+        </div>
+        <div class="feature-text">
+          <span class="f-num">01</span>
+          <h4>メーカー「純正」だから<br>スムーズに開く</h4>
+          <p>街の鍵屋さんで作る「コピーキー（複製品）」は、微妙なズレが生じやすく、鍵穴を傷める原因にも。当店はお客様の鍵番号からメーカーに直接発注するため、新品の滑らかな書き心地をお約束します。</p>
+        </div>
+      </div>
+
+      <div class="feature-row reverse">
+        <div class="feature-img"
+          style="background-image: url('https://images.unsplash.com/photo-1633265486064-086b219458ec?auto=format&fit=crop&w=800&q=80');">
+        </div>
+        <div class="feature-text">
+          <span class="f-num">02</span>
+          <h4>写真はAI判定のみに使用。<br>徹底したセキュリティ管理</h4>
+          <p>アップロードいただいた鍵の写真は、AIによる型番判定にのみ使用し、作成完了後にサーバーから完全に削除されます。個人情報と鍵情報は厳重に分離管理されています。</p>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-img"
+          style="background-image: url('https://images.unsplash.com/photo-1596484552882-62400e942fdb?auto=format&fit=crop&w=800&q=80');">
+        </div>
+        <div class="feature-text">
+          <span class="f-num">03</span>
+          <h4>お店に行かなくてOK。<br>ポストに届きます</h4>
+          <p>わざわざ店舗に出向いて、在庫があるか確認する必要はありません。24時間いつでもスマホから注文でき、追跡可能なメール便でポストにお届けします。対面受け取りも不要です。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow" class="section-wrapper flow-section">
+      <h3 class="section-title">カンタン3ステップで完了</h3>
+      <div class="flow-grid">
+        <div class="flow-item">
+          <div class="flow-step">STEP 1</div>
+          <div class="flow-icon">📸</div>
+          <h4>スマホで撮影</h4>
+          <p>鍵のメーカーと、刻印番号が見えるように写真を撮ります。</p>
+        </div>
+        <div class="flow-arrow">➡</div>
+        <div class="flow-item">
+          <div class="flow-step">STEP 2</div>
+          <div class="flow-icon">📝</div>
+          <h4>ネットで注文</h4>
+          <p>メーカーや番号を入力すると、すぐに見積もり金額が表示されます。</p>
+        </div>
+        <div class="flow-arrow">➡</div>
+        <div class="flow-item">
+          <div class="flow-step">STEP 3</div>
+          <div class="flow-icon">📬</div>
+          <h4>ポストにお届け</h4>
+          <p>メーカーから取り寄せた新品の鍵が、数日後に届きます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrapper voice-section">
+      <h3 class="section-title">お客様からの喜びの声</h3>
+      <div class="voice-scroll">
+        <div class="voice-card">
+          <div class="voice-meta">
+            <span class="stars">★★★★★</span>
+            <span class="v-user">30代 女性 / MIWA</span>
+          </div>
+          <p class="voice-comment">「近所のホームセンターで断られた鍵でしたが、ここでは番号だけで作れました！抜き差しもスムーズで感動です。」</p>
+        </div>
+        <div class="voice-card">
+          <div class="voice-meta">
+            <span class="stars">★★★★★</span>
+            <span class="v-user">40代 男性 / GOAL</span>
+          </div>
+          <p class="voice-comment">「写真だけで本当に届くのか不安でしたが、純正品が届きました。仕事が忙しいので助かりました。」</p>
+        </div>
+        <div class="voice-card">
+          <div class="voice-meta">
+            <span class="stars">★★★★☆</span>
+            <span class="v-user">50代 女性 / WEST</span>
+          </div>
+          <p class="voice-comment">「子供に鍵をなくされ急いでいましたが、特急プランですぐに届きました。予備もセットで安かったです。」</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section-wrapper faq-section">
+      <h3 class="section-title">よくあるご質問</h3>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>Q. 賃貸アパートですが、作っても大丈夫ですか？</dt>
+          <dd>A. はい、可能です。ただし、退去時には大家さんに全ての鍵（複製含む）を返却する必要があります。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Q. 鍵に書いてある番号だけで、本当に開きますか？</dt>
+          <dd>A. はい。その番号は「鍵の設計図」そのものです。メーカー純正のラインで製造するため、コピー品よりも確実に動作します。</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Q. 写真を送るのはセキュリティ的に怖いです。</dt>
+          <dd>A. ご安心ください。お送りいただいた画像データは、AI判定とメーカー発注完了後、システムから自動的に完全削除されます。</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="last-cta">
+      <h2>そのカギ、もうお店に行かなくて大丈夫。</h2>
+      <p>メーカー純正品質を、スマホから。</p>
+      <button class="btn-start large" onclick="openTool()">
+        <span class="icon">🔍</span>
+        今すぐ鍵の見積もりをする
+      </button>
+    </section>
+
+    <section class="columns-preview">
+      <div class="section-header">
+        <h3>鍵のお役立ち情報</h3>
+        <a href="columns.html" class="link-more">もっと見る &gt;</a>
+      </div>
+      <div class="column-scroll">
+        <article class="col-card" onclick="location.href='article.html'">
+          <div class="col-thumb">施工例</div>
+          <h4>MIWA U9の作成事例</h4>
+          <p class="date">2026.02.01</p>
+        </article>
+        <article class="col-card" onclick="location.href='article.html'">
+          <div class="col-thumb">知識</div>
+          <h4>鍵が抜けない時の対処法</h4>
+          <p class="date">2026.01.28</p>
+        </article>
+        <article class="col-card" onclick="location.href='article.html'">
+          <div class="col-thumb">知識</div>
+          <h4>純正キーとコピーの違い</h4>
+          <p class="date">2026.01.15</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="legal.html">特定商取引法に基づく表記</a>
+      <a href="legal.html#privacy">プライバシーポリシー</a>
+      <a href="contact.html">お問い合わせ</a>
+    </div>
+    <p class="copyright">© 2026 AI-KAGI STORE</p>
+  </footer>
+
+  <div id="tool-overlay" class="tool-overlay">
+    <div class="tool-container">
+      <header class="tool-header">
+        <div class="progress-bar">
+          <div id="progress-fill"></div>
+        </div>
+        <button class="btn-close" onclick="closeTool()">✕ 中断</button>
+      </header>
+
+      <form id="keyForm">
+
+        <div class="step active" data-step="1">
+          <h3 class="q-title">Q1. この鍵はどこで使われていますか？</h3>
+          <p class="q-desc">作成したい鍵の用途を選んでください。</p>
+          <div class="choice-list">
+            <label class="choice-card">
+              <input type="radio" name="location" value="entrance" onclick="nextStep()">
+              <span class="choice-text">🏠 家の玄関・勝手口</span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="location" value="office" onclick="nextStep()">
+              <span class="choice-text">🏢 会社・事務所・店舗</span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="location" value="room" onclick="nextStep()">
+              <span class="choice-text">🚪 室内ドア・金庫・ロッカー</span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="location" value="other" onclick="nextStep()">
+              <span class="choice-text">その他</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="step" data-step="2">
+          <h3 class="q-title">Q2. 鍵に刻印されている文字はありますか？</h3>
+          <p class="q-desc">メーカー名や番号が読める状態ですか？</p>
+          <div class="choice-list">
+            <label class="choice-card">
+              <input type="radio" name="has_engraving" value="yes" onclick="nextStep()">
+              <span class="choice-text">⭕ はい、文字があります</span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="has_engraving" value="no" onclick="checkEngraving()">
+              <span class="choice-text">❌ いいえ、何も書いていません</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="step" data-step="3">
+          <h3 class="q-title">Q3. メーカーを選んでください</h3>
+          <p class="q-desc">持ち手部分のロゴを選択してください。</p>
+          <div class="icon-grid">
+            <div class="icon-item" onclick="setMaker('MIWA')">MIWA</div>
+            <div class="icon-item" onclick="setMaker('GOAL')">GOAL</div>
+            <div class="icon-item" onclick="setMaker('WEST')">WEST</div>
+            <div class="icon-item" onclick="setMaker('ALPHA')">ALPHA</div>
+            <div class="icon-item" onclick="setMaker('SHOWA')">U-SHIN SHOWA</div>
+            <div class="icon-item" onclick="setMaker('OTHER')">その他/不明</div>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn-back" onclick="prevStep()">戻る</button>
+          </div>
+        </div>
+
+        <div class="step" data-step="4">
+          <h3 class="q-title">Q4. 鍵の形はどちらですか？</h3>
+          <p class="q-desc">これによって価格が決まります。</p>
+          <div class="choice-list">
+            <label class="choice-card" onclick="setKeyType('standard')">
+              <div style="display:flex; align-items:center; width:100%;">
+                <span style="font-size:2rem; margin-right:15px;">〰️</span>
+                <div>
+                  <span class="choice-text">ギザギザしている</span><br>
+                  <span style="font-size:0.85rem; color:#888;">（一般的な鍵）</span>
+                </div>
+                <div style="margin-left:auto; font-weight:bold; color:var(--primary);">3,000円</div>
+              </div>
+            </label>
+            <label class="choice-card" onclick="setKeyType('dimple')">
+              <div style="display:flex; align-items:center; width:100%;">
+                <span style="font-size:2rem; margin-right:15px;">::::</span>
+                <div>
+                  <span class="choice-text">ボコボコ穴がある</span><br>
+                  <span style="font-size:0.85rem; color:#888;">（ディンプルキー）</span>
+                </div>
+                <div style="margin-left:auto; font-weight:bold; color:var(--primary);">5,000円</div>
+              </div>
+            </label>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn-back" onclick="prevStep()">戻る</button>
+          </div>
+        </div>
+
+        <div class="step" data-step="5">
+          <h3 class="q-title">Q5. 鍵情報の入力</h3>
+          <p class="q-desc">正確な作成とAI学習のため、写真と番号をお願いします。<br><span
+              style="color:#e74c3c; font-size:0.8rem;">※表面のみ1枚・必須</span></p>
+
+          <div class="camera-section">
+
+            <div id="camera-preview-area" class="upload-area" onclick="initCamera()">
+              <div id="preview-box">
+                <span class="cam-icon">📷</span><br>
+                <span style="font-weight:bold; color:var(--primary);">ここをタップしてカメラ起動</span>
+              </div>
+            </div>
+
+            <div id="camera-stream-area" style="display:none;">
+              <div class="video-wrapper">
+                <video id="camera-video" autoplay playsinline muted></video>
+
+                <div class="camera-overlay">
+                  <div class="key-filter-container">
+
+                    <svg class="key-svg-guide" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M 65,380 L 65,150 Q 10,140 10,75 A 90,75 0 0,1 190,75 Q 190,140 135,150 L 135,380 A 35,10 0 0,1 65,380 Z" />
+                    </svg>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="camera-controls">
+                <button type="button" class="btn-shutter" onclick="takePhoto()">撮影する</button>
+                <button type="button" class="btn-cancel-cam" onclick="stopCamera()">キャンセル</button>
+              </div>
+            </div>
+
+            <input type="file" id="keyPhoto" accept="image/*" style="display:none;" onchange="handleFileSelect(this)">
+
+            <p style="text-align:center; margin-top:10px; font-size:0.8rem;">
+              <a href="#" onclick="document.getElementById('keyPhoto').click(); return false;" style="color:#888;">
+                カメラが起動しない場合はこちら (ファイル選択)
+              </a>
+            </p>
+          </div>
+          <label class="form-label" style="text-align:left; display:block; margin-bottom:5px; margin-top:20px;">鍵番号
+            <span class="form-tag">必須</span></label>
+          <input type="text" id="keyNumberInput" class="input-big" placeholder="例: A123456789"
+            style="margin-bottom:10px;">
+          <p style="font-size:0.8rem; color:#888; text-align:center; margin-bottom:20px;">※ハイフン(-)がある場合は含めてください</p>
+
+          <div class="btn-group">
+            <button type="button" class="btn-back" onclick="prevStep()">戻る</button>
+            <button type="button" class="btn-next" onclick="validateAndCalc()">見積もり確認へ</button>
+          </div>
+        </div>
+
+        <div class="step" data-step="6">
+          <h3 class="q-title">お見積もり結果</h3>
+
+          <div class="plan-card premium" style="text-align:center;">
+            <div class="p-head" style="justify-content:center; flex-direction:column;">
+              <span style="font-size:1rem; color:#888;">作成価格（税込）</span>
+              <span class="price" id="finalPriceDisplay" style="font-size:2.5rem; margin:10px 0;">0円</span>
+            </div>
+            <div class="p-desc" style="text-align:left; border-top:1px dashed #ddd; padding-top:15px;">
+              <p><strong>用途:</strong> <span id="resLocation">-</span></p>
+              <p><strong>メーカー:</strong> <span id="resMaker">-</span></p>
+              <p><strong>鍵タイプ:</strong> <span id="resType">-</span></p>
+              <p><strong>鍵番号:</strong> <span id="resNumber">-</span></p>
+              <p style="margin-top:10px; font-size:0.8rem; color:#e65a25;">※ 写真データはAI学習用として安全に保管されます。</p>
+            </div>
+            <button type="button" class="btn-select-main" onclick="addToCart()">カートに入れる</button>
+          </div>
+
+          <button type="button" class="btn-back"
+            style="margin-top:20px; width:100%; border:none; background:transparent;" onclick="closeTool()">やめる</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+
+  <script>
+    function toggleMenu() {
+      document.body.classList.toggle('nav-open');
+    }
+  </script>
+</body>
+
+</html>
